@@ -1,14 +1,14 @@
 package es.weso.shacl
 import cats._
 import cats.implicits._
-import es.weso.rdf.nodes.{Lang, LangLiteral, RDFNode, StringLiteral}
+import es.weso.rdf.nodes.{Lang, LangLiteral, RDFHTMLLiteral, RDFNode, StringLiteral}
 
 case class MessageMap(mmap: Map[Option[Lang], String]) {
 
   def getRDFNodes: List[RDFNode] = mmap.toList.map {
     case (maybeLang, str) =>
       maybeLang match {
-        case None       => StringLiteral(str)
+        case None       => if (str.contains("<")) RDFHTMLLiteral(str) else StringLiteral(str) // RH20220820
         case Some(lang) => LangLiteral(str, lang)
       }
   }
