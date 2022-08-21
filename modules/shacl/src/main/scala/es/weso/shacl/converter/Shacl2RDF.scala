@@ -111,8 +111,8 @@ case class Shacl2RDF() extends RDFSaver with LazyLogging {
       _ <- deactivated(shapeNode, ps.deactivated)
       _ <- ignoredProperties(shapeNode, ps.ignoredProperties)
       _ <- messageMap(shapeNode, ps.message, `sh:message`)
-      _ <- messageMap(shapeNode, ps.message, `sh:name`)
-      _ <- messageMap(shapeNode, ps.message, `sh:description`)
+      _ <- messageMap(shapeNode, ps.name, `sh:name`) // RH20220820
+      _ <- messageMap(shapeNode, ps.description, `sh:description`) // RH20220820
       _ <- order(shapeNode,ps.order)
       _ <- group(shapeNode,ps.group)
       _ <- severity(shapeNode, ps.severity)
@@ -133,8 +133,8 @@ case class Shacl2RDF() extends RDFSaver with LazyLogging {
     _ <- ignoredProperties(shapeNode, n.ignoredProperties)
     _ <- saveList(n.components, component(shapeNode))
     _ <- messageMap(shapeNode, n.message, `sh:message`)
-    _ <- messageMap(shapeNode, n.name, `sh:name`)
-    _ <- messageMap(shapeNode, n.name, `sh:description`)
+    _ <- messageMap(shapeNode, n.name, `sh:name`) // RH20220820
+    _ <- messageMap(shapeNode, n.description, `sh:description`) // RH20220820
     _ <- severity(shapeNode, n.severity)
     _ <- order(shapeNode,n.order)
     _ <- group(shapeNode,n.group)
