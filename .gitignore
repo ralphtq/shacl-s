@@ -3,6 +3,7 @@
 .bloop
 
 # sbt specific
+.bsp/sbt.json
 dist/*
 target/
 lib_managed/
