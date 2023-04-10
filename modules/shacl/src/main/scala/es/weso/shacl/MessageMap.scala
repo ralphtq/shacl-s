@@ -16,6 +16,10 @@ case class MessageMap(mmap: Map[Option[Lang], String]) {
   }
 
   def addMessage(node: RDFNode): Either[String, MessageMap] = node match {
+    case RDFHTMLLiteral(str) => mmap.get(None) match {
+      case None => Right(MessageMap(mmap.updated(None, str)))
+      case Some(other) => Left(s"Trying to create two messages without language tag: $other and $str")
+    }
     case StringLiteral(str) => mmap.get(None) match {
       case None => Right(MessageMap(mmap.updated(None, str)))
       case Some(other) => Left(s"Trying to create two messages without language tag: $other and $str")

@@ -105,6 +105,7 @@ case class Shacl2RDF() extends RDFSaver with LazyLogging {
     for {
       shapeNode <- makeShapeId(ps.id)
       _ <- addTriple(shapeNode, `rdf:type`, `sh:PropertyShape`)
+      _ <- addTriple(shapeNode, `rdfs:comment`, RDFHTMLLiteral("test HTML for property shape"))
       _ <- targets(shapeNode, ps.targets)
       _ <- propertyShapes(shapeNode, ps.propertyShapes)
       _ <- closed(shapeNode, ps.closed)
@@ -122,10 +123,11 @@ case class Shacl2RDF() extends RDFSaver with LazyLogging {
       _ <- saveList(ps.annotations,annotation(shapeNode))
     } yield (shapeNode)
   }
-
+  val `rdfs:comment` = rdfs + "comment"
   private def nodeShape(n: NodeShape): RDFSaver[RDFNode] = for {
     shapeNode <- makeShapeId(n.id)
     _ <- addTriple(shapeNode, `rdf:type`, `sh:NodeShape`)
+    _ <- addTriple(shapeNode, `rdfs:comment`, RDFHTMLLiteral("test HTML for node shape"))
     _ <- targets(shapeNode, n.targets)
     _ <- propertyShapes(shapeNode, n.propertyShapes)
     _ <- closed(shapeNode, n.closed)

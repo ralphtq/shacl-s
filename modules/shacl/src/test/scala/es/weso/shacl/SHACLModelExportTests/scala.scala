@@ -67,7 +67,7 @@ object SHACLModelExportTests extends IOApp {
       , MessageMap.empty // message
       , None // severity
       , MessageMap.fromString("name") // TODO name
-      , MessageMap.fromString("<p>TODO: property shape description</p>" + "^^rdf:HTML") // description
+      , MessageMap.fromString("<p>TODO: property shape description</p>") // description
       , order // order
       , group // group
       , Some(sourceClass.id.toIRI.right.get) // sourceIRI
@@ -89,7 +89,7 @@ object SHACLModelExportTests extends IOApp {
       , message = MessageMap.empty
       , severity = None
       , name = MessageMap.fromString(name)
-      , description = MessageMap.fromString("<p>TODO: node shape description</p>" + "^^rdf:HTML") // description
+      , description = MessageMap.fromString("<p>TODO: node shape description</p>") // description
       , order = None
       , group = None
       , None // sourceIRI
